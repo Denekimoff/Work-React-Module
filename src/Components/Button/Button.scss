@@ -1,0 +1,112 @@
+.btn {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  outline: none;
+  border: none;
+  margin: 1rem;
+  background-color: rgb(241, 240, 240);
+  color: black;
+  display: flex;
+  align-items: center;
+  transition: 0.4s;
+
+  &:disabled {
+      background-color: rgb(223, 222, 222);
+      color: rgba(0, 0, 0);
+      opacity: 0.5;
+    }
+}
+
+
+.primary {
+  background-color: rgb(28, 28, 167);
+  color: #fff;
+
+  &:not([disabled]):hover {
+      background-color: rgb(65, 65, 255);
+    }
+}
+
+.secondary {
+  color: black;
+
+  &:not([disabled]):hover {
+      background-color: rgb(209, 208, 208);
+    }
+}
+
+.secondary-two {
+  border: 1px solid rgb(250, 250, 250);
+  background-color: rgb(250, 250, 250);
+  color: tomato;
+
+  &:hover {
+      border: 1px solid rgb(209, 208, 208);
+    }
+  &:disabled {
+    border: none;
+    background-color: rgb(250, 250, 250);
+  }
+}
+
+
+.btn-with-icon {
+  gap: 1rem;
+  align-items: end;
+
+  &:not([disabled]):hover {
+      color: #fff;
+      fill: #fff;
+      background-color: rgb(65, 65, 255);
+      transition: color ease-in-out 0.1s;
+    }
+}
+
+.btn-icon-up {
+  font-size: 0.8rem;
+  gap: 0.3rem;
+
+  &:hover {
+      color: #fff;
+      fill: #fff;
+      background-color: tomato;
+    }
+}
+
+.btn-icon-down {
+  font-size: 0.8rem;
+  gap: 0.3rem;
+
+  &:hover {
+      color: #fff;
+      fill: #fff;
+      background-color: rgb(65, 65, 255);
+    }
+}
+
+.btn-submit {
+  width: 40%;
+  margin-top: 2rem;
+  padding: 0.3rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
+  font-size: 1rem;
+  outline: none;
+  border: 1px solid rgb(70, 70, 70);
+  border-radius: 0.3rem;
+  background-color: rgb(216, 216, 216);
+  cursor: pointer;
+  transition: background 0.3s;
+
+  &:not([disabled]):hover {
+      background-color: rgb(224, 224, 224);
+    }
+  &:not([disabled]):active {
+    transform: scaleY(1.01);
+  }
+}
