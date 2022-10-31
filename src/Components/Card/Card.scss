@@ -1,0 +1,106 @@
+.btn-card {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  outline: none;
+  border: none;
+  margin: 0;
+  background-color: transparent;
+  color: black;
+  display: flex;
+  align-items: center;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.card {
+  width: 100%;
+  margin: 3rem auto;
+  padding: 0 0.5rem;
+  background-color: #F3F3F3;
+
+  .card__row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+    .card__info {
+      max-width: 60%;
+      display: flex;
+      flex-flow: row wrap;
+
+      .card__date {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        user-select: none;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        color: #8D8E97;
+      }
+
+      .card__title {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        text-align: left;
+        user-select: none;
+        font-weight: 700;
+        font-size: 2rem;
+        line-height: 2.75rem;
+        color: #313037;
+      }
+
+      .card__description {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        text-align: left;
+        user-select: none;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.75rem;
+        color: #8D8E97;
+      }
+    }
+
+    .card__image {
+      max-width: 35%;
+
+      & img {
+        width: 250px;
+        height: 250px;
+      }
+    }
+
+    .card__like {
+      display: flex;
+    }
+
+    .card__edit {
+      display: flex;
+
+      .btn-mark {
+        margin: 0;
+      }
+    }
+
+    &:hover {
+      .card__title {
+        color: #2231AA;
+      }
+
+      cursor: pointer;
+    }
+
+    &:nth-child(2) {
+      border-bottom: 1px solid #DADADA;
+      // transform: matrix(1, 0, 0, -1, 0, 0);
+      margin-top: 1.5rem;
+      padding-bottom: 2rem;
+    }
+  }
+}

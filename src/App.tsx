@@ -8,12 +8,13 @@ import {IconUp}  from './Components/Icon/IconUp'
 import {IconDown}  from './Components/Icon/IconDown'
 import {IconMark} from './Components/Icon/IconMark'
 import {Input} from './Components/Input/Input'
+import {Card} from './Components/Card/Card'
 
 function App () {
     const [error, setError] = useState(false)
-    const onSubmit = (event: { preventDefault: () => void; target: number }) => {
+    const onSubmit = (event: { preventDefault: () => any; target: any }) => {
         event.preventDefault()
-        if (event.target < 6) {
+        if (event.target < 4) {
             setError(true)
         } else {
             setError(false)
@@ -43,7 +44,7 @@ function App () {
                     <Button disabled className='btn' icon={<IconDown className='icon-down'/>}/>
                 </div>
                 <div className='row'>
-                    <form className='form'>
+                    <form className='form' onSubmit={onSubmit}>
                         <h3>Form Element</h3>
                         <Input className='input-text' label='Firth name' placeholder='Firth Name'/>
                         <Input className='input-text' label='Last name' placeholder='Last Name'/>
@@ -54,6 +55,12 @@ function App () {
                             <Button className='btn-submit' type='submit' children='Submit'/>
                         </div>
                     </form>
+                </div>
+                <div className='cards-list'>
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
                 </div>
             </div>
         </div>
