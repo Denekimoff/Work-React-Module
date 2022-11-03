@@ -1,0 +1,21 @@
+.wrapper {
+  max-width: 75rem;
+  margin: 0 auto;
+}
+.blog__body {
+  display: flex;
+  flex-flow: row;
+  padding: 2rem 0;
+}
+.main-content {
+  max-width: 65%;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+}
+.feat-content {
+  max-width: 35%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: right;
+}

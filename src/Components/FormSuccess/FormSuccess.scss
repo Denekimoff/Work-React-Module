@@ -1,0 +1,7 @@
+.form__success {
+  user-select: none;
+  margin: 0;
+  &:nth-child(2) {
+    margin-bottom: 2rem;
+  }
+}

@@ -5,31 +5,35 @@ export interface ButtonProps {
     type?: string
     className?: string
     disabled?: boolean
-    // onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+    onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
     icon?: ReactElement
-    children?: string
+    children?: any
+    link?: string
+    count?: any
 }
 
 export const Button = ({
     type = 'button',
     className = 'btn',
     disabled = false,
-    // onClick,
+    onClick,
     icon,
     children,
+    link,
+    count,
 }: ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>) => {
-    // const [count, setCount] = useState(1)
-    // const onClick = () => setCount(count + 1)
+
     return (
         <button
             type={type}
             className={className}
             disabled={disabled}
-            // onClick={onClick}
+            onClick={onClick}
         >
+            {link}
             {icon}
+            {count}
             {children}
-            {/* {count} */}
         </button>
     )
 }
