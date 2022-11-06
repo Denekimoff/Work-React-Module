@@ -1,4 +1,4 @@
-.form {
+.form-sign-up {
   max-width: 60%;
   margin: 5rem auto;
   padding: 2rem;
@@ -30,11 +30,6 @@
         line-height: 1.25rem;
       }
     }
-  }
-
-  .form__text:hover {
-    cursor: pointer;
-    color: rgb(65, 65, 255);
   }
 
   .form__submit {

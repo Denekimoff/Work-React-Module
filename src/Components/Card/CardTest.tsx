@@ -12,15 +12,13 @@ import './Card.scss'
 interface CardType {
     variant?: string
     className?: string
-    dateCard?: string
+    date?: string
     title?: string
     text?: string
     image?: string
 }
 
-
-
-export const Card = ({ variant, className, dateCard, title, text, image }: CardType) => {
+export const CardTest = ({ variant, className, date, title, text, image }: CardType) => {
 
 
     const [count, setCount] = useState(0)
@@ -35,7 +33,7 @@ export const Card = ({ variant, className, dateCard, title, text, image }: CardT
             <div className='card__main'>
                 <div className='card__info'>
                     <div className='card__date'>
-                        {dateCard}
+                        {date}
                     </div>
                     <div className='card__title'>
                         <h3>{title}</h3>

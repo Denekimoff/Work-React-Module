@@ -12,15 +12,15 @@ interface PaginationType {
 
 export const Pagination = ({ className, children }: PaginationType) => {
     return (
-        <div className={className}>
+        <div className={`pagination--${className}`}>
             <div className='wrapper'>
                 <div className='pagination__body'>
                     <div className='pagination__left'>
-                        <Button className='btn-pagination'><IconLeftArrow/> Prev</Button>
+                        <Button className='pagination__btn'><IconLeftArrow/>{'Prev'}</Button>
                     </div>
                     {children}
                     <div className='pagination__right'>
-                        <Button className='btn-pagination'>Next <IconRightArrow/></Button>
+                        <Button className='pagination__btn'>{'Next'}<IconRightArrow/></Button>
                     </div>
                 </div>
             </div>
