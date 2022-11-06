@@ -8,7 +8,7 @@ interface FooterType {
 
 export const Footer = ({ className }: FooterType) => {
     return (
-        <footer className={className}>
+        <footer className={`footer--${className}`}>
             <div className='wrapper'>
                 <div className='footer__body'>
                     <span>©2022 Blogfolio</span>

@@ -6,30 +6,7 @@
   background-color: #F3F3F3;
 }
 
-.row {
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-flow: row;
-}
-
-.form {
-  display: flex;
-  flex-flow: column;
-  margin-bottom: 5rem;
-}
-
-.submit {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.cards-list {
-  width: 100%;
-  padding: 0 4rem;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: left;
+.wrapper {
+  max-width: 75rem;
+  margin: 0 auto;
 }

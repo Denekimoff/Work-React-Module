@@ -23,3 +23,26 @@
     justify-content: space-between;
   }
 }
+
+.pagination__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #313037;
+  cursor: pointer;
+
+  &:hover {
+    color: #2231AA;
+
+    svg {
+      fill: #2231AA;
+    }
+  }
+}

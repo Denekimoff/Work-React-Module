@@ -9,12 +9,12 @@ interface TabsType {
 
 export const Tabs = ({ className }: TabsType) => {
     return (
-        <div className={className}>
+        <div className={`tabs--${className}`}>
             <div className='wrapper'>
                 <div className='tabs__body'>
-                    <Button className='btn-tab'>All</Button>
-                    <Button className='btn-tab'>My favorites</Button>
-                    <Button className='btn-tab'>Popular</Button>
+                    <Button className='tabs__btn'>All</Button>
+                    <Button className='tabs__btn'>My favorites</Button>
+                    <Button className='tabs__btn'>Popular</Button>
                 </div>
             </div>
         </div>

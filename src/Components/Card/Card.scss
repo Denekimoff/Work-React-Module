@@ -111,9 +111,9 @@
     flex-flow: row wrap;
     justify-content: space-between;
     border-bottom: 1px solid #DADADA;
-    // transform: matrix(1, 0, 0, -1, 0, 0);
     margin-top: 1.5rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1.8rem;
+    margin-bottom: 2rem;
 
     .card__like {
       display: flex;
@@ -135,6 +135,7 @@
   margin: 0;
   padding: 0 0.5rem;
   background-color: #F3F3F3;
+  margin-bottom: 2.2rem;
 
   .card__main {
     display: flex;
@@ -212,9 +213,8 @@
     flex-flow: row wrap;
     justify-content: space-between;
     border-bottom: 1px solid #DADADA;
-    // transform: matrix(1, 0, 0, -1, 0, 0);
     margin-top: 1.5rem;
-    padding-bottom: 2rem;
+    padding-bottom: 2.2rem;
 
     .card__like {
       display: flex;
@@ -316,7 +316,6 @@
     flex-flow: row wrap;
     justify-content: space-between;
     border-bottom: 1px solid #DADADA;
-    // transform: matrix(1, 0, 0, -1, 0, 0);
     margin-top: 0.5rem;
     padding-bottom: 2rem;
 

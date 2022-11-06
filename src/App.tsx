@@ -1,23 +1,53 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { useEffect, useState } from 'react'
+
 import './App.scss'
-import { Button } from './Components/Button/Button'
-import { Header } from './Components/Header/Header'
-import { AuthPageWrapper } from './Components/AuthPageWrapper/AuthPageWrapper'
-import { Blog } from './Components/Blog/Blog'
-import { Footer } from './Components/Footer/Footer'
-import { Pagination } from './Components/Pagination/Pagination'
-import { Tabs } from './Components/Tabs/Tabs'
-import { PaginationCenterLinks } from './Components/PaginationCenterLinks/PaginationCenterLinks'
-import { Form } from './Components/Form/Form'
-import { FormSuccess } from './Components/FormSuccess/FormSuccess'
+import { Button } from './components/Button/Button'
+import { Header } from './components/Header/Header'
+import { AuthPageWrapper } from './components/AuthPageWrapper/AuthPageWrapper'
+import { Blog } from './components/Blog/Blog'
+import { Footer } from './components/Footer/Footer'
+import { Pagination } from './components/Pagination/Pagination'
+import { Tabs } from './components/Tabs/Tabs'
+import { PaginationCenterLinks } from './components/PaginationCenterLinks/PaginationCenterLinks'
+import { FormSignIn } from './components/FormSignIn/FormSignIn'
+import { FormSignUp } from './components/FormSignUp/FormSignUp'
+import { FormSuccess } from './components/FormSuccess/FormSuccess'
+
+// Test LOAD Card
+import { data } from './assets/data'
+import { CardTest } from './components/Card/CardTest'
+import './components/Card/Card.scss'
 
 function App () {
+
+    // Test LOAD Card |
+    interface dataTypes {
+        id?: number;
+    image?: string;
+    text?: string;
+    date?: string;
+    lesson_num?: number;
+    title?: string;
+    author?: number;
+    }
+
+    const [ data1, setLoadCard ] = useState<dataTypes[]>([])
+
+    useEffect (() => {
+        setLoadCard(data)
+    }, [])
+    // Test LOAD Card |
+
+    const onClickHome = () => {
+        console.log('Go to home')
+    }
 
     return (
         <div className='App'>
             {/* All Cards */}
-            <Header className='header'/>
+            <Header/>
             <AuthPageWrapper title={'Blog'} theme={'white'}>
                 <Tabs/>
                 <Blog/>
@@ -25,21 +55,44 @@ function App () {
                     <PaginationCenterLinks/>
                 </Pagination>
             </AuthPageWrapper>
-            <Footer className='footer'/>
+            <Footer/>
+
+            {/* Sign In */}
+            <Header/>
+            <AuthPageWrapper title={'Sign In'} theme={'white'} button={
+                <Button className='btn' onClick={onClickHome}>{'Back to home'}</Button>
+            }>
+                <FormSignIn/>
+            </AuthPageWrapper>
+            <Footer/>
 
             {/* Sign Up */}
-            <Header className='header'/>
-            <AuthPageWrapper title={'Sign In'} theme={'white'} button={<Button className='btn'>Back to home</Button>}>
-                <Form/>
+            <Header/>
+            <AuthPageWrapper title={'Sign Up'} theme={'white'} button={
+                <Button className='btn' onClick={onClickHome}>{'Back to home'}</Button>
+            }>
+                <FormSignUp/>
             </AuthPageWrapper>
-            <Footer className='footer'/>
+            <Footer/>
 
             {/* Success */}
-            <Header className='header'/>
-            <AuthPageWrapper title={'Success'} theme={'white'} button={<Button className='btn'>Back to home</Button>}>
+            <Header/>
+            <AuthPageWrapper title={'Success'} theme={'white'} button={
+                <Button className='btn' onClick={onClickHome}>{'Back to home'}</Button>
+            }>
                 <FormSuccess/>
             </AuthPageWrapper>
-            <Footer className='footer'/>
+            <Footer/>
+
+            {/* Test Load Cards */}
+            <Header/>
+            <AuthPageWrapper title={'Test LOAD Cards'}>
+                <div className='wrapper'>
+                    {data1.map(({ id, image, title, text, date }) => (
+                        <CardTest key={id} image={image} title={title} text={text} date={date} className='bg' />
+                    ))}
+                </div>
+            </AuthPageWrapper>
         </div>
     )
 }

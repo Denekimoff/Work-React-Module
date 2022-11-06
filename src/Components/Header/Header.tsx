@@ -12,14 +12,14 @@ interface HeaderType {
 
 export const Header = ({ className }: HeaderType) => {
     return (
-        <header className={className}>
+        <header className={`header--${className}`}>
             <div className='header__body'>
                 <div className='header__burger'>
-                    <Button className='btn-header'><IconBurger/></Button>
+                    <Button className='header__btn'><IconBurger/></Button>
                 </div>
                 <div className='header__navbar'>
-                    <Button className='btn-header'><IconSearch/></Button>
-                    <Button className='btn-header'><IconUser/></Button>
+                    <Button className='header__btn'><IconSearch/></Button>
+                    <Button className='header__btn'><IconUser/></Button>
                 </div>
             </div>
         </header>
