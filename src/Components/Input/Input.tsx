@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React from 'react'
 import './Input.scss'
 
 export interface InputProps {
@@ -10,36 +10,30 @@ export interface InputProps {
     required?: boolean
     error?: boolean
     errorText?: string
+    onChange?: any
 }
 
 export const Input = ({
-    label = 'Text',
+    label = '',
     type = 'text',
     className = '',
     placeholder = '',
     disabled = false,
-    required = true,
     error = false,
+    value = '',
     errorText = 'Invalid text',
+    onChange = () => {},
 }): any => {
-    const [value, setValue] = useState('')
-    const handleChange = (event: { target: { value: any } }) => {
-        const { value } = event.target
-        setValue(value)
-    }
-    const id : any = +new Date()
-    return (
 
+    return (
         <fieldset className={`${className}`}>
             <label>{label}
                 <input
-                    id={id}
                     type={type}
-                    value={value}
-                    onChange={handleChange}
-                    required={required}
                     placeholder={placeholder}
+                    onChange={onChange}
                     disabled={disabled}
+                    value={value}
                 />
             </label>
             {error && <span>{errorText}</span>}

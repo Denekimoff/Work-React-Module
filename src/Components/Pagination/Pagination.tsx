@@ -6,13 +6,13 @@ import { IconLeftArrow } from '../Icon/IconLeftArrow'
 import { IconRightArrow } from '../Icon/IconRightArrow'
 
 interface PaginationType {
-  className?: string
-  children?: any
+    theme?: string
+    children?: any
 }
 
-export const Pagination = ({ className, children }: PaginationType) => {
+export const Pagination = ({ theme, children }: PaginationType) => {
     return (
-        <div className={`pagination--${className}`}>
+        <div className={`pagination pagination--${theme}`}>
             <div className='wrapper'>
                 <div className='pagination__body'>
                     <div className='pagination__left'>

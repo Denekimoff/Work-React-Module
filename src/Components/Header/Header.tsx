@@ -7,15 +7,16 @@ import { IconUser } from '../Icon/IconUser'
 import './Header.scss'
 
 interface HeaderType {
-    className?: string
+    theme?: string
+    toggleTheme?: any
 }
 
-export const Header = ({ className }: HeaderType) => {
+export const Header = ({ theme, toggleTheme }: HeaderType) => {
     return (
-        <header className={`header--${className}`}>
+        <header className={`header header--${theme}`}>
             <div className='header__body'>
                 <div className='header__burger'>
-                    <Button className='header__btn'><IconBurger/></Button>
+                    <Button className='header__btn' onClick={toggleTheme}><IconBurger/></Button>
                 </div>
                 <div className='header__navbar'>
                     <Button className='header__btn'><IconSearch/></Button>

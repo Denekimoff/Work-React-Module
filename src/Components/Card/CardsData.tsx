@@ -2,7 +2,7 @@
 import photo from '../../assets/Astronaut.jpg'
 // @ts-ignore-end
 
-interface CardsDataType {
+export interface CardsDataType {
     id: number
     image?: any
     title: string

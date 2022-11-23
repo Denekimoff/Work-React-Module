@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 
 import { Button } from '../Button/Button'
 import { IconDown } from '../Icon/IconDown'
@@ -6,23 +6,18 @@ import { IconMark } from '../Icon/IconMark'
 import { IconUp } from '../Icon/IconUp'
 import { IconMore } from '../Icon/IconMore'
 import { Image } from '../Image/Image'
-
 import './Card.scss'
+import { ThemeContext } from '../../contexts/contexts'
 
 interface CardType {
     variant?: string
-    className?: string
     dateCard?: string
     title?: string
     text?: string
     image?: string
 }
 
-
-
-export const Card = ({ variant, className, dateCard, title, text, image }: CardType) => {
-
-
+export const Card = ({ variant, dateCard, title, text, image }: CardType) => {
     const [count, setCount] = useState(0)
     const onClick = () => setCount(count + 1)
     const countstr = count === 0 ? ' ' : count
@@ -30,8 +25,10 @@ export const Card = ({ variant, className, dateCard, title, text, image }: CardT
     const onClick2 = () => setCount2(count2 + 1)
     const countstr2 = count2 === 0 ? ' ' : count2
 
+    const {theme} = useContext(ThemeContext)
+
     return (
-        <div className={`card--${variant} ${className}`}>
+        <div className={`card--${variant} card--${theme}`}>
             <div className='card__main'>
                 <div className='card__info'>
                     <div className='card__date'>

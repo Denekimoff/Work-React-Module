@@ -1,20 +1,28 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 
 import { Card } from '../Card/Card'
 import { cardsData } from '../Card/CardsData'
+import { CardsDataType } from '../Card/CardsData'
 import './Blog.scss'
 
-const [ { dateCard, title, text, image } ] = cardsData
+interface BlogType {
+    theme?: string
+}
 
-export const Blog = () => {
+export const Blog = ({ theme }: BlogType) => {
+    const [ data, setLoadCard ] = useState<CardsDataType[]>([])
+
+    useEffect (() => {
+        setLoadCard(cardsData)
+    }, [])
+
     return (
-        <div className='blog__body'>
+        <div className={`blog__body blog__body--${theme}`}>
             <div className='blog__main-content'>
-                <Card variant='bg' dateCard={dateCard} title={title} text={text} image={image}/>
-                {cardsData.map( card => <Card variant='md' dateCard={dateCard} title={card.title} text={card.text} image={card.image}/>)}
+                {data.map( card => card === data[0] ? <Card variant='bg' dateCard={card.dateCard} title={card.title} text={card.text} image={card.image}/> : <Card variant='md' dateCard={card.dateCard} title={card.title} text={card.text} image={card.image}/>)}
             </div>
             <div className='blog__feat-content'>
-                {cardsData.map( card => <Card variant='sm' dateCard={card.dateCard} title={card.title} text={card.text} image={card.image}/>)}
+                {data.map( card => <Card variant='sm' dateCard={card.dateCard} title={card.title} text={card.text} image={card.image}/>)}
             </div>
         </div>
     )

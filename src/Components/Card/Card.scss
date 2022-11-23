@@ -18,22 +18,32 @@
   line-height: 1.4rem;
 }
 
-.btn-like, .btn-dislike, .btn-mark, .btn-edit {
+.card--light {
+  .btn-card {
+    color: black;
+  }
+
+  .btn-like,
+  .btn-dislike,
+  .btn-mark,
+  .btn-edit {
 
     &:hover {
       color: #2231AA;
-      svg{
+
+      svg {
         fill: #2231AA;
       }
     }
+  }
 }
+
 
 //? Стили для большой карточки
 .card--bg {
   width: 100%;
   margin: 0 auto;
   padding: 0 0.5rem;
-  background-color: #F3F3F3;
 
   .card__main {
     display: flex;
@@ -134,7 +144,6 @@
   width: 47%;
   margin: 0;
   padding: 0 0.5rem;
-  background-color: #F3F3F3;
   margin-bottom: 2.2rem;
 
   .card__main {
@@ -239,7 +248,6 @@
   margin: 0;
   margin-bottom: 2rem;
   padding-left: 1rem;
-  background-color: #F3F3F3;
 
   .card__main {
     display: flex;
@@ -328,6 +336,36 @@
 
       .btn-mark {
         margin: 0;
+      }
+    }
+  }
+}
+
+.card--dark {
+  .btn-card {
+    color: #fff;
+  }
+
+  .btn-like,
+  .btn-dislike,
+  .btn-mark,
+  .btn-edit {
+
+    &:hover {
+      color: #9aa6ff;
+
+      svg {
+        fill: #9aa6ff;
+      }
+    }
+  }
+
+  &:hover {
+    .card__main {
+      .card__info {
+        .card__title {
+          color: #9aa6ff;
+        }
       }
     }
   }
