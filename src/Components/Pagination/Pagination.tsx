@@ -1,18 +1,20 @@
-import React from 'react'
+import { useContext } from 'react'
 
-import './Pagination.scss'
 import { Button } from '../Button/Button'
 import { IconLeftArrow } from '../Icon/IconLeftArrow'
 import { IconRightArrow } from '../Icon/IconRightArrow'
+import { ThemeContext } from '../../contexts/contexts'
+import './Pagination.scss'
 
 interface PaginationType {
-    theme?: string
     children?: any
 }
 
-export const Pagination = ({ theme, children }: PaginationType) => {
+export const Pagination = ({ children }: PaginationType) => {
+    const {theme} = useContext(ThemeContext)
+
     return (
-        <div className={`pagination pagination--${theme}`}>
+        <div className={`paginations paginations--${theme}`}>
             <div className='wrapper'>
                 <div className='pagination__body'>
                     <div className='pagination__left'>

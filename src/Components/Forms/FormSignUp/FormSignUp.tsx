@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 import { Button } from '../../Button/Button'
 import { Input } from '../../Input/Input'
@@ -23,7 +24,11 @@ export const FormSignUp = () => {
             <Input className='form__input' label='Confirm password' type='password' placeholder='Confirm password'/>
             <div className='form__submit'>
                 <Button className='form__btn' type='submit' children='Sign Up'/>
-                <p className='submit__text'>Already have an account?<span>Sign In</span></p>
+                <p className='submit__text'>Already have an account?
+                    <NavLink style={{textDecoration: 'none'}} to='/sign_in'>
+                        <span>Sign In</span>
+                    </NavLink>
+                </p>
             </div>
         </form>
     )

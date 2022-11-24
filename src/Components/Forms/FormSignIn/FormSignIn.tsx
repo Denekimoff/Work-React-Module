@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 import { Button } from '../../Button/Button'
 import { Input } from '../../Input/Input'
@@ -16,12 +17,11 @@ export const FormSignIn = () => {
     const [error, setError] = useState(false)
     const onSubmit = (event: { preventDefault: () => any; target: any }) => {
         event.preventDefault()
-        console.log(email)
         if (email.length < 0) {
-            setError(true)
+            setError(!error)
         }
         if (password.length < 0) {
-            setError(true)
+            setError(!error)
         }
     }
 
@@ -43,12 +43,18 @@ export const FormSignIn = () => {
                 onChange={handlePassword}
                 value={password}
             />
-            <p className='form__text'>Forgot password?</p>
+            <NavLink style={{textDecoration: 'none'}} to='/reset_pass'>
+                <p className='form__text'>Forgot password?</p>
+            </NavLink>
             <div className='form__submit'>
                 <Button className='form__btn'
                     type='submit'
                     children='Sign In'/>
-                <p className='submit__text'>Don`t have an account?<span>Sign Up</span></p>
+                <p className='submit__text'>Don`t have an account?
+                    <NavLink style={{textDecoration: 'none'}} to='/sign_up'>
+                        <span>Sign Up</span>
+                    </NavLink>
+                </p>
             </div>
         </form>
     )

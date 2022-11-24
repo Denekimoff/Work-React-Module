@@ -1,20 +1,28 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
+import { ThemeContext } from '../../contexts/contexts'
 import { Card } from '../Card/Card'
 import { cardsData } from '../Card/CardsData'
 import { CardsDataType } from '../Card/CardsData'
 import './Blog.scss'
 
-interface BlogType {
-    theme?: string
-}
+export const Blog = () => {
+    const {theme, toggleTheme} = useContext(ThemeContext)
 
-export const Blog = ({ theme }: BlogType) => {
     const [ data, setLoadCard ] = useState<CardsDataType[]>([])
-
     useEffect (() => {
         setLoadCard(cardsData)
     }, [])
+
+    const [isAutorized, setIsAutorized] = useState(false)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (isAutorized) {
+            navigate('./sign_in')
+        }
+    }, [isAutorized])
 
     return (
         <div className={`blog__body blog__body--${theme}`}>

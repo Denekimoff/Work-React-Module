@@ -6,8 +6,8 @@ import { IconMark } from '../Icon/IconMark'
 import { IconUp } from '../Icon/IconUp'
 import { IconMore } from '../Icon/IconMore'
 import { Image } from '../Image/Image'
-import './Card.scss'
 import { ThemeContext } from '../../contexts/contexts'
+import './Card.scss'
 
 interface CardType {
     variant?: string

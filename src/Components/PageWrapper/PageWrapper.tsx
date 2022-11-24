@@ -1,19 +1,26 @@
-import React, {type PropsWithChildren} from 'react'
+import React, {useContext, type PropsWithChildren} from 'react'
+import { NavLink } from 'react-router-dom'
 
+import { ThemeContext } from '../../contexts/contexts'
 import './PageWrapper.scss'
 
 type PageWrapperProps = PropsWithChildren<{
-  title?: string
-  theme?: string
-  children?: React.ReactNode
-  button?: React.ReactNode
+    breadcrumb?: React.ReactNode
+    title?: string
+    children?: React.ReactNode
+    button?: React.ReactNode
 }>
 
-export const PageWrapper = ({ button, children, title, theme }: PageWrapperProps) => {
+export const PageWrapper = ({ breadcrumb, button, children, title}: PageWrapperProps) => {
+    const {theme} = useContext(ThemeContext)
+
     return (
         <div className={`page-wrapper page-wrapper--${theme}`}>
             <div className='wrapper'>
-                {button}
+                {breadcrumb}
+                <NavLink style={{textDecoration: 'none'}} to={'/'}>
+                    {button}
+                </NavLink>
                 <h1 className='page-wrapper__title'>{title}</h1>
                 {children}
             </div>

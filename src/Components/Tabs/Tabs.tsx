@@ -1,13 +1,15 @@
-import React from 'react'
+import { useContext } from 'react'
+
+import { ThemeContext } from '../../contexts/contexts'
 
 import { Button } from '../Button/Button'
 import './Tabs.scss'
 
-interface TabsType {
-  theme?: string
-}
 
-export const Tabs = ({ theme }: TabsType) => {
+
+export const Tabs = () => {
+    const {theme} = useContext(ThemeContext)
+
     return (
         <div className={`tabs tabs--${theme}`}>
             <div className='wrapper'>

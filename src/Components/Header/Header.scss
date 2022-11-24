@@ -28,7 +28,6 @@
       height: 100%;
       margin: 0;
       background-color: transparent;
-      padding: 1rem;
       outline: none;
       border: none;
       border-left: 1px solid #5360CD;
@@ -51,36 +50,6 @@
 
       svg {
         fill: #fff;
-      }
-    }
-  }
-
-  &--dark {
-    .header__body {
-      background-color: #bcc5ff;
-
-      .header__burger {
-        .header__btn {
-          border-color: rgb(50, 50, 50);
-        }
-
-        svg {
-          fill: rgb(50, 50, 50);
-        }
-      }
-
-      .header__btn {
-        border-color: rgb(50, 50, 50);
-
-        &:hover {
-          background-color: #9aa6ff;
-        }
-      }
-
-      .header__navbar {
-        svg {
-          fill: rgb(50, 50, 50);
-        }
       }
     }
   }

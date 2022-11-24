@@ -1,7 +1,7 @@
 import React from 'react'
 import './Input.scss'
 
-export interface InputProps {
+type InputProps = {
     label?: string
     type?: string
     className?: string
@@ -9,21 +9,22 @@ export interface InputProps {
     disabled?: boolean
     required?: boolean
     error?: boolean
+    value?: string
     errorText?: string
-    onChange?: any
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const Input = ({
-    label = '',
-    type = 'text',
-    className = '',
-    placeholder = '',
-    disabled = false,
-    error = false,
-    value = '',
+    label,
+    type,
+    className,
+    placeholder,
+    disabled,
+    error,
+    value,
     errorText = 'Invalid text',
     onChange = () => {},
-}): any => {
+}: InputProps) => {
 
     return (
         <fieldset className={`${className}`}>
