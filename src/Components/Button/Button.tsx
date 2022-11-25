@@ -14,7 +14,7 @@ export interface ButtonProps {
 
 export const Button = ({
     type = 'button',
-    className = 'btn',
+    className,
     disabled = false,
     onClick,
     icon,

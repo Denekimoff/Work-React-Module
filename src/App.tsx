@@ -11,35 +11,39 @@ import { SignUp } from './components/pages/SignUp'
 import { ResetPass } from './components/pages/ResetPass'
 import { NewPass } from './components/pages/NewPass'
 import { Success } from './components/pages/Success'
+import { BurgerMenu } from './components/BurgerMenu/BurgerMenu'
 import './App.scss'
 
 function App () {
-
-
-    const onClickHome = () => {
-        console.log('Go to home')
-    }
+    //Состояние темы приложения
     const [theme, setTheme] = useState(THEMES.light)
     const toggleTheme = () => {
         setTheme (theme === 'light' ? THEMES.dark : THEMES.light)
+    }
+
+    //Состояние для показа меню
+    const [menu, setMenu] = useState(false)
+    const toggleMenu = () => {
+        setMenu(!menu)
     }
 
     return (
         <div className={`App App--${theme}`}>
             <ThemeContext.Provider value={{ theme, toggleTheme }}>
                 <BrowserRouter>
-                    <Header/>
+                    <Header toggleMenu={toggleMenu}/>
+                    {menu && <BurgerMenu />}
                     <Routes>
                         <Route path='/'>
                             <Route index element={<AllCards/>} />
-                            <Route path='sign_in' element={<SignIn onClickHome={onClickHome}/>} />
-                            <Route path='sign_up' element={<SignUp onClickHome={onClickHome}/>} />
-                            <Route path='reset_pass' element={<ResetPass onClickHome={onClickHome}/>} />
-                            <Route path='new_pass' element={<NewPass onClickHome={onClickHome}/>} />
-                            <Route path='success' element={<Success onClickHome={onClickHome}/>} />
+                            <Route path='sign_in' element={<SignIn/>} />
+                            <Route path='sign_up' element={<SignUp/>} />
+                            <Route path='reset_pass' element={<ResetPass/>} />
+                            <Route path='new_pass' element={<NewPass/>} />
+                            <Route path='success' element={<Success/>} />
                         </Route>
                     </Routes>
-                    <Footer className={theme}/>
+                    <Footer/>
                 </BrowserRouter>
             </ThemeContext.Provider>
         </div>
