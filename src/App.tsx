@@ -31,7 +31,7 @@ function App () {
         <div className={`App App--${theme}`}>
             <ThemeContext.Provider value={{ theme, toggleTheme }}>
                 <BrowserRouter>
-                    <Header toggleMenu={toggleMenu}/>
+                    <Header toggleMenu={toggleMenu} menu={menu}/>
                     {menu && <BurgerMenu />}
                     <Routes>
                         <Route path='/'>
