@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Button } from '../Button/Button'
 import { IconDown } from '../Icon/IconDown'
@@ -8,6 +9,7 @@ import { IconMore } from '../Icon/IconMore'
 import { Image } from '../Image/Image'
 import { ThemeContext } from '../../contexts/contexts'
 import './Card.scss'
+import { addLike, dislike } from '../../redux/actions/actionCreator'
 
 interface CardType {
     variant?: string
@@ -18,11 +20,24 @@ interface CardType {
 }
 
 export const Card = ({ variant, dateCard, title, text, image }: CardType) => {
+
+    //---Redux---
+    const dispatch = useDispatch()
+    const cards = useSelector((state: any) => state.cards)
+    console.log(cards)
+    const handleGetlike = (e:any) => {
+        dispatch(addLike())
+    }
+    const handleGetDislike = (e:any) => {
+        dispatch(dislike())
+    }
+    //-----------
+
     const [count, setCount] = useState(0)
-    const onClick = () => setCount(count + 1)
+    const handleLike = () => setCount(count + 1)
     const countstr = count === 0 ? ' ' : count
     const [count2, setCount2] = useState(0)
-    const onClick2 = () => setCount2(count2 + 1)
+    const handleDislike = () => setCount2(count2 + 1)
     const countstr2 = count2 === 0 ? ' ' : count2
 
     const {theme} = useContext(ThemeContext)
@@ -47,8 +62,8 @@ export const Card = ({ variant, dateCard, title, text, image }: CardType) => {
             </div>
             <div className='card__footer'>
                 <div className='card__like'>
-                    <Button className='btn-card btn-like' onClick={onClick} icon={<IconUp/>}>{countstr}</Button>
-                    <Button className='btn-card btn-dislike' onClick={onClick2} icon={<IconDown/>}>{countstr2}</Button>
+                    <Button className='btn-card btn-like' onClick={handleLike} icon={<IconUp/>}>{countstr}</Button>
+                    <Button className='btn-card btn-dislike' onClick={handleDislike} icon={<IconDown/>}>{countstr2}</Button>
                 </div>
                 <div className='card__edit'>
                     <Button className='btn-card btn-mark' icon={<IconMark/>}/>
