@@ -21,6 +21,7 @@ export const Button = ({
     children,
     link,
     count,
+    style,
 }: ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>) => {
 
     return (
@@ -29,6 +30,7 @@ export const Button = ({
             className={className}
             disabled={disabled}
             onClick={onClick}
+            style={style}
         >
             {link}
             {icon}

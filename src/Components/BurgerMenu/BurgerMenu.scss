@@ -1,9 +1,8 @@
 .burger-menu {
-  position: absolute;
+  position: fixed;
   top: 5rem;
   width: 14rem;
-  height: 30rem;
-  height: 90vh;
+  height: 91vh;
   display: flex;
   flex-flow: column;
   justify-content: space-between;

@@ -1,4 +1,4 @@
-import { ADD_LIKE, DISLIKE } from './actionTypes'
+import { ADD_LIKE, DISLIKE } from '../actionTypes/likeActionTypes'
 
 let countLike = 0
 let countDislike = 0

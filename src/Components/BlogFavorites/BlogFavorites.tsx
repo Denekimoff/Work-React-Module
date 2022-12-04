@@ -3,28 +3,27 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { ThemeContext } from '../../contexts/contexts'
 import { setPosts } from '../../redux/actionCreators/postsActionCreators'
-import { IStore } from '../../redux/types'
+import { IPost, IStore } from '../../redux/types'
 import { Card } from '../Card/Card'
 import { cardsData } from '../Card/CardsData'
-import './Blog.scss'
 
-export const Blog = () => {
+export const BlogFavorites = () => {
     const { theme } = useContext(ThemeContext)
     const dispatch = useDispatch()
     const data = useSelector((state: IStore) => state.posts.posts)
-    const activeTab = useSelector((state: IStore) => state.settings.activeTab)
+    const dataFavoritesId = useSelector((state: IStore) => state.posts.favorites)
+    const newData = data.filter((post: IPost) => dataFavoritesId.includes(post.id))
     useEffect (() => {
-        console.log(cardsData)
         dispatch(setPosts(cardsData))
-    }, [])
+    }, [dispatch])
 
-    const newData = data.slice(0, 6)
+    // Чтобы сбоку панель не скучала
     const dataSide = data.slice(6, data.length)
 
     return (
         <div className={`blog__body blog__body--${theme}`}>
             <div className='blog__main-content'>
-                {newData.map( (card) => card === newData[0] ? <Card key={card.id} variant='bg' id={card.id} date={card.date} title={card.title} text={card.text} image={card.image}/> : <Card key={card.id} variant='md' id={card.id} date={card.date} title={card.title} text={card.text} image={card.image}/>)}
+                {newData.length ? newData.map( post => <Card key={post.id} variant='bg' id={post.id} date={post.date} title={post.title} text={post.text} image={post.image}/>) : 'Not Favorites posts '}
             </div>
             <div className='blog__feat-content'>
                 {dataSide.map( (card) => <Card key={card.id} id={card.id} variant='sm' date={card.date} title={card.title} text={card.text} image={card.image}/>)}
