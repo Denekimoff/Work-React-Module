@@ -6,19 +6,22 @@ export interface IPost {
     date?: string,
     author?: number,
     text?: string,
-    likes?: boolean,
-    dislikes?: boolean,
+    // likes?: boolean,
+    // dislikes?: boolean,
 }
 
 // Типы postsReducer
 export interface IPostsStore {
     posts: IPost[],
     favorites: number[],
+    countTotal: number,
 }
 
 // Типы settingsReducer
 export interface ISettingsStore {
     activeTab: string,
+    currentPage: number,
+    rowsPerPage: number,
 }
 
 // Тип всего Store (state)

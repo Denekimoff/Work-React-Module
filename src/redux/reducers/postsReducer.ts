@@ -1,13 +1,21 @@
-import { ADD_FAVORITE, REMOVE_FAVORITE, SET_POSTS } from '../actionTypes/postsActionTypes'
+import { ADD_FAVORITE, REMOVE_FAVORITE, SET_COUNT_TOTAL, SET_POSTS } from '../actionTypes/postsActionTypes'
 import { IPostsStore } from '../types'
 
 export const initialState = {
     posts: [],
     favorites: [],
+    countTotal: 0,
 }
 
 const postsReducer = (state: IPostsStore = initialState , action: any) => {
     switch (action.type) {
+    case SET_COUNT_TOTAL: {
+        const { count } = action
+        return ({
+            ...state,
+            countTotal: count,
+        })
+    }
     case SET_POSTS: {
         const { posts } = action
         return ({

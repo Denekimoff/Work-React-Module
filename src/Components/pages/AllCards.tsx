@@ -22,9 +22,9 @@ export const AllCards = () => {
                 </Breadcrumb>}>
                 <Tabs/>
                 {activeTab.includes('All') ? <Blog/> : <BlogFavorites/>}
-                <Pagination>
+                {/* <Pagination>
                     <PaginationCenterLinks/>
-                </Pagination>
+                </Pagination> */}
             </PageWrapper>
         </>
     )
