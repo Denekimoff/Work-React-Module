@@ -28,12 +28,17 @@
   .btn-mark,
   .btn-edit {
 
+
+    .dislike {
+      fill: rgb(153, 94, 6);
+    }
+
+    .like {
+      fill: tomato;
+    }
+
     &:hover {
       color: #2231AA;
-
-      svg {
-        fill: #2231AA;
-      }
     }
   }
 }
@@ -245,7 +250,6 @@
 
 
   }
-
 }
 
 //? Стили для маленькой карточки
@@ -362,12 +366,17 @@
   .btn-mark,
   .btn-edit {
 
+    .dislike {
+      fill: rgb(153, 94, 6);
+    }
+
+    .like {
+      fill: tomato;
+    }
+
     &:hover {
       color: #9aa6ff;
 
-      svg {
-        fill: #9aa6ff;
-      }
     }
   }
 

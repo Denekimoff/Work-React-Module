@@ -1,16 +1,28 @@
-import { useContext, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import {
+    useContext,
+} from 'react'
+import {
+    useDispatch,
+    useSelector,
+} from 'react-redux'
 
+import {
+    addDislike,
+    addFavorite,
+    addLike,
+    removeDislike,
+    removeFavorite,
+    removeLike,
+} from '../../redux/actionCreators/postsActionCreators'
+import { IPost, IStore } from '../../redux/types'
+import { ThemeContext } from '../../contexts/contexts'
 import { Button } from '../Button/Button'
 import { IconDown } from '../Icon/IconDown'
 import { IconMark } from '../Icon/IconMark'
 import { IconUp } from '../Icon/IconUp'
 import { IconMore } from '../Icon/IconMore'
 import { Image } from '../Image/Image'
-import { ThemeContext } from '../../contexts/contexts'
 import './Card.scss'
-import { IPost, IStore } from '../../redux/types'
-import { addFavorite, removeFavorite } from '../../redux/actionCreators/postsActionCreators'
 
 interface ICard extends IPost {
     variant: string
@@ -19,19 +31,18 @@ interface ICard extends IPost {
 export const Card = ({ variant, date, title, text, image, id }: ICard) => {
     const {theme} = useContext(ThemeContext)
     const dispatch = useDispatch()
-    const favorites = useSelector((state: IStore) => state.posts.favorites)
-    
-    const [count, setCount] = useState(0)
-    const handleLike = () => setCount(count + 1)
-    const countstr = count === 0 ? ' ' : count
-    const [count2, setCount2] = useState(0)
-    const handleDislike = () => setCount2(count2 + 1)
-    const countstr2 = count2 === 0 ? ' ' : count2
-    const isInclude = favorites.includes(id)
 
-    const handleToggleFavorite = () => {
-        dispatch(isInclude ? removeFavorite(id) : addFavorite(id))
-    }
+    const favorites = useSelector((state: IStore) => state.posts.favorites)
+    const likePosts = useSelector((state: IStore) => state.posts.likePosts)
+    const dislikePosts = useSelector((state: IStore) => state.posts.dislikePosts)
+
+    const isIncludeMark = favorites.includes(id)
+    const isIncludeLike = likePosts.includes(id)
+    const isIncludeDislike = dislikePosts.includes(id)
+
+    const handlerToggleFavorite = () => dispatch(isIncludeMark ? removeFavorite(id) : addFavorite(id))
+    const handlerToggleLike = () => dispatch(isIncludeLike ? removeLike(id) : addLike(id))
+    const handlerToggleDislike = () => dispatch(isIncludeDislike ? removeDislike(id) : addDislike(id))
 
     return (
         <div className={`card--${variant} card--${theme}`}>
@@ -53,11 +64,13 @@ export const Card = ({ variant, date, title, text, image, id }: ICard) => {
             </div>
             <div className='card__footer'>
                 <div className='card__like'>
-                    <Button className='btn-card btn-like' onClick={handleLike} icon={<IconUp/>}>{count}</Button>
-                    <Button className='btn-card btn-dislike' onClick={handleDislike} icon={<IconDown/>}>{count2}</Button>
+                    <Button className='btn-card btn-like' onClick={handlerToggleLike} icon={<IconUp isLike={
+                        isIncludeLike ? 'like' : 'unlike'
+                    }/>}/>
+                    <Button className='btn-card btn-dislike' onClick={handlerToggleDislike} icon={<IconDown isDislike={isIncludeDislike ? 'dislike' : 'undislike'}/>}/>
                 </div>
                 <div className='card__edit'>
-                    <Button className='btn-card btn-mark' icon={<IconMark color={isInclude ? 'tomato' : 'black'}/>} onClick={handleToggleFavorite}/>
+                    <Button className='btn-card btn-mark' icon={<IconMark color={isIncludeMark ? 'tomato' : 'black'}/>} onClick={handlerToggleFavorite}/>
                     <Button className='btn-card btn-edit' icon={<IconMore/>}/>
                 </div>
             </div>

@@ -6,8 +6,6 @@ export interface IPost {
     date?: string,
     author?: number,
     text?: string,
-    // likes?: boolean,
-    // dislikes?: boolean,
 }
 
 // Типы postsReducer
@@ -15,6 +13,10 @@ export interface IPostsStore {
     posts: IPost[],
     favorites: number[],
     countTotal: number,
+    searchValue: string,
+    loading: boolean,
+    likePosts: number[],
+    dislikePosts: number[],
 }
 
 // Типы settingsReducer
