@@ -5,11 +5,13 @@ import {
     useDispatch,
     useSelector,
 } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import {
     addDislike,
     addFavorite,
     addLike,
+    openPost,
     removeDislike,
     removeFavorite,
     removeLike,
@@ -46,22 +48,24 @@ export const Card = ({ variant, date, title, text, image, id }: ICard) => {
 
     return (
         <div className={`card--${variant} card--${theme}`}>
-            <div className='card__main'>
-                <div className='card__info'>
-                    <div className='card__date'>
-                        {date}
+            <Link to={'/post'} onClick={() => dispatch(openPost(id))}>
+                <div className='card__main'>
+                    <div className='card__info'>
+                        <div className='card__date'>
+                            {date}
+                        </div>
+                        <div className='card__title'>
+                            <h3>{title}</h3>
+                        </div>
+                        <div className='card__description'>
+                            {text}
+                        </div>
                     </div>
-                    <div className='card__title'>
-                        <h3>{title}</h3>
-                    </div>
-                    <div className='card__description'>
-                        {text}
+                    <div className='card__image'>
+                        <Image image={image} alt={title}/>
                     </div>
                 </div>
-                <div className='card__image'>
-                    <Image image={image} alt={title}/>
-                </div>
-            </div>
+            </Link>
             <div className='card__footer'>
                 <div className='card__like'>
                     <Button className='btn-card btn-like' onClick={handlerToggleLike} icon={<IconUp isLike={

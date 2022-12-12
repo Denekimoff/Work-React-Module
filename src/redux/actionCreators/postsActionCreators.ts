@@ -15,6 +15,7 @@ import {
     REMOVE_LIKE,
     ADD_DISLIKE,
     REMOVE_DISLIKE,
+    OPEN_POST,
 } from '../actionTypes/postsActionTypes'
 
 import { IPost } from '../types'
@@ -39,7 +40,7 @@ const addFavorite = (id: number) => ({
     id,
 })
 
-const removeFavorite = (id: number) => ({
+const removeFavorite = (id: any) => ({
     type: REMOVE_FAVORITE,
     id,
 })
@@ -64,12 +65,18 @@ const removeDislike = (id: number) => ({
     id,
 })
 
-const loadPosts = (currentPage: number, rowsPerPage: number, searchValue: string, loading: boolean) => ({
+const openPost = (id: number) => ({
+    type: OPEN_POST,
+    id,
+})
+
+const loadPosts = (currentPage: number, rowsPerPage: number, searchValue: string, loading: boolean, activePost: number) => ({
     type: LOAD_POSTS,
     currentPage,
     rowsPerPage,
     searchValue,
     loading,
+    activePost,
 })
 
 const setPostsTotal = (count: number) => ({
@@ -82,7 +89,9 @@ function* watcherPosts () {
 }
 
 function* fetchLoadPosts (datas: any) {
-    const { currentPage, rowsPerPage, searchValue, loading } = datas
+    window.scrollTo(0, 0)
+    const { currentPage, rowsPerPage, searchValue, loading, activePost } = datas
+    //Куда запхать activePost...
     yield put(isLoading(!loading))
     const responce: Response = yield fetch(`https://studapi.teachmeskills.by/blog/posts/?limit=${rowsPerPage}&offset=${(currentPage -1) * rowsPerPage}&search=${searchValue}`)
     const data: {count: number, results: IPost[]} = yield responce.json()
@@ -98,6 +107,7 @@ export {
     addFavorite,
     removeFavorite,
     loadPosts,
+    openPost,
     setPostsTotal,
     watcherPosts,
     addLike,

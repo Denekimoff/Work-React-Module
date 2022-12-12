@@ -3,6 +3,7 @@ import {
     ADD_FAVORITE,
     ADD_LIKE,
     IS_LOADING,
+    OPEN_POST,
     REMOVE_DISLIKE,
     REMOVE_FAVORITE,
     REMOVE_LIKE,
@@ -21,10 +22,18 @@ export const initialState = {
     loading: false,
     likePosts: [],
     dislikePosts: [],
+    activePost: 0,
 }
 
 const postsReducer = (state: IPostsStore = initialState , action: any) => {
     switch (action.type) {
+
+    case OPEN_POST: {
+        return ({
+            ...state,
+            activePost: action.id,
+        })
+    }
 
     case IS_LOADING: {
         console.log(`Текущее состояние загрузки - ${state.loading}`, `Статус загрузки сменился на - ${action.loading}`)

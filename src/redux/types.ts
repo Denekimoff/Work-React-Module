@@ -17,6 +17,7 @@ export interface IPostsStore {
     loading: boolean,
     likePosts: number[],
     dislikePosts: number[],
+    activePost: number,
 }
 
 // Типы settingsReducer

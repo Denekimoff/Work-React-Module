@@ -17,10 +17,13 @@ export const Blog = () => {
     const rowsPerPage = useSelector((state: IStore) => state.settings.rowsPerPage)
     const searchValue = useSelector((state: IStore) => state.posts.searchValue)
     const loading = useSelector((state: IStore) => state.posts.loading)
+    const activePost = useSelector((state: IStore) => state.posts.activePost)
+
+    console.log(data)
 
     useEffect (() => {
-        dispatch(loadPosts(currentPage, rowsPerPage, searchValue, loading))
-    }, [currentPage, rowsPerPage, searchValue])
+        dispatch(loadPosts(currentPage, rowsPerPage, searchValue, loading, activePost))
+    }, [currentPage, rowsPerPage, searchValue, activePost])
 
     const newData = data.slice(0, 6)
     const dataSide = data.slice(6, data.length)
