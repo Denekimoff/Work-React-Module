@@ -1,7 +1,9 @@
 import { useContext, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import { ThemeContext } from '../../contexts/contexts'
+import { IStore } from '../../redux/types'
 import { Button } from '../Button/Button'
 import { IconBurger } from '../Icon/IconBurger'
 import { IconCancel } from '../Icon/IconCancel'
@@ -13,10 +15,10 @@ import './Header.scss'
 
 export const Header = ({ toggleMenu, menu }: any) => {
     const {theme} = useContext(ThemeContext)
-
-
     const [isVisible, setIsVisible] = useState(false)
     const handlerToogleSearchClass = () => setIsVisible(!isVisible)
+    const user = useSelector((state: IStore) => state.user.user)
+
     return (
         <header className={`header header--${theme}`}>
             <div className='header__body'>
@@ -31,9 +33,11 @@ export const Header = ({ toggleMenu, menu }: any) => {
                         }
                     </Button>
                     <Button className='header__btn'>
-                        <NavLink style={{textDecoration: 'none'}} to={'/sign_in'}>
-                            <IconUser/>
-                        </NavLink>
+                        {
+                            user ? (<span>{`${user.username?.charAt(0).toUpperCase()}${user.username?.charAt(user.username.length - 1).toUpperCase()}`}</span>) : (<NavLink style={{textDecoration: 'none'}} to={'/sign_up'}>
+                                <IconUser/>
+                            </NavLink>)
+                        }
                     </Button>
                 </div>
             </div>

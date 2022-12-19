@@ -19,8 +19,6 @@ export const Blog = () => {
     const loading = useSelector((state: IStore) => state.posts.loading)
     const activePost = useSelector((state: IStore) => state.posts.activePost)
 
-    console.log(data)
-
     useEffect (() => {
         dispatch(loadPosts(currentPage, rowsPerPage, searchValue, loading, activePost))
     }, [currentPage, rowsPerPage, searchValue, activePost])
@@ -32,7 +30,7 @@ export const Blog = () => {
         <div className={`blog__body blog__body--${theme}`}>
             <div className='blog__main-content'>
                 {
-                    loading ? [...new Array(3)].map((_, i) => <CardSkeleton key={i}/>) : newData.map( (card) => card === data[0] ? <Card key={card.id} variant='bg' id={card.id} date={card.date} title={card.title} text={card.text} image={card.image}/> : <Card key={card.id} variant='md' id={card.id} date={card.date} title={card.title} text={card.text} image={card.image}/>)
+                    loading ? [...new Array(3)].map((_, i) => <CardSkeleton key={i}/>) : newData.map(card => card === data[0] ? <Card key={card.id} variant='bg' id={card.id} date={card.date} title={card.title} text={card.text} image={card.image}/> : <Card key={card.id} variant='md' id={card.id} date={card.date} title={card.title} text={card.text} image={card.image}/>)
                 }
             </div>
             <div className='blog__feat-content'>

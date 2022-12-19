@@ -8,10 +8,10 @@ import {
 import { Link } from 'react-router-dom'
 
 import {
+    activePostId,
     addDislike,
     addFavorite,
     addLike,
-    openPost,
     removeDislike,
     removeFavorite,
     removeLike,
@@ -24,6 +24,7 @@ import { IconMark } from '../Icon/IconMark'
 import { IconUp } from '../Icon/IconUp'
 import { IconMore } from '../Icon/IconMore'
 import { Image } from '../Image/Image'
+
 import './Card.scss'
 
 interface ICard extends IPost {
@@ -48,7 +49,7 @@ export const Card = ({ variant, date, title, text, image, id }: ICard) => {
 
     return (
         <div className={`card--${variant} card--${theme}`}>
-            <Link to={'/post'} onClick={() => dispatch(openPost(id))}>
+            <Link to={'/post'} onClick={() => dispatch(activePostId(id))}>
                 <div className='card__main'>
                     <div className='card__info'>
                         <div className='card__date'>

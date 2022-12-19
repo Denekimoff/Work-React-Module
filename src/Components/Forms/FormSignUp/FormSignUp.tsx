@@ -1,11 +1,15 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { NavLink, useNavigate } from 'react-router-dom'
+
+import { userSignUp } from '../../../redux/actionCreators/userActionCreators'
 
 import { Button } from '../../Button/Button'
 import { Input } from '../../Input/Input'
 import '../Form.scss'
 
 export const FormSignUp = () => {
+    const dispatch = useDispatch()
     const [error, setError] = useState(false)
     const onSubmit = (event: { preventDefault: () => any; target: any }) => {
         event.preventDefault()
@@ -13,6 +17,11 @@ export const FormSignUp = () => {
             setError(true)
         } else {
             setError(false)
+            dispatch(userSignUp({
+                username: event.target[1].value,
+                email: event.target[3].value,
+                password: event.target[5].value,
+            }))
         }
     }
 
@@ -33,3 +42,5 @@ export const FormSignUp = () => {
         </form>
     )
 }
+
+

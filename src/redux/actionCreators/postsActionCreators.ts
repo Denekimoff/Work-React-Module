@@ -20,6 +20,11 @@ import {
 
 import { IPost } from '../types'
 
+const activePostId = (id: number) => ({
+    type: OPEN_POST,
+    id,
+})
+
 const isLoading = (loading: boolean) => ({
     type: IS_LOADING,
     loading,
@@ -65,11 +70,6 @@ const removeDislike = (id: number) => ({
     id,
 })
 
-const openPost = (id: number) => ({
-    type: OPEN_POST,
-    id,
-})
-
 const loadPosts = (currentPage: number, rowsPerPage: number, searchValue: string, loading: boolean, activePost: number) => ({
     type: LOAD_POSTS,
     currentPage,
@@ -91,6 +91,7 @@ function* watcherPosts () {
 function* fetchLoadPosts (datas: any) {
     window.scrollTo(0, 0)
     const { currentPage, rowsPerPage, searchValue, loading, activePost } = datas
+    console.log(activePost)
     //Куда запхать activePost...
     yield put(isLoading(!loading))
     const responce: Response = yield fetch(`https://studapi.teachmeskills.by/blog/posts/?limit=${rowsPerPage}&offset=${(currentPage -1) * rowsPerPage}&search=${searchValue}`)
@@ -102,12 +103,12 @@ function* fetchLoadPosts (datas: any) {
 }
 
 export {
+    activePostId,
     setSearchValue,
     setPosts,
     addFavorite,
     removeFavorite,
     loadPosts,
-    openPost,
     setPostsTotal,
     watcherPosts,
     addLike,

@@ -27,8 +27,22 @@ export interface ISettingsStore {
     rowsPerPage: number,
 }
 
+// Типы userReducer
+export interface IUser {
+    username?: string,
+    email: string,
+    password: string,
+    id?: number,
+    user?: any,
+}
 // Тип всего Store (state)
 export interface IStore {
     posts: IPostsStore,
     settings: ISettingsStore,
+    user: IUser,
+}
+
+export interface JWTResponce {
+    access: string,
+    refresh: string,
 }

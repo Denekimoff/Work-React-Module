@@ -29,9 +29,10 @@ const postsReducer = (state: IPostsStore = initialState , action: any) => {
     switch (action.type) {
 
     case OPEN_POST: {
+        const { id } = action
         return ({
             ...state,
-            activePost: action.id,
+            activePost: id,
         })
     }
 
