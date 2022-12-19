@@ -1,7 +1,11 @@
 import { put,takeEvery } from 'redux-saga/effects'
 
-import { ACTIVATE, SET_USER, SIGN_IN, SIGN_UP } from '../actionTypes/userActionTypes'
+import { ACTIVATE, GET_ME, LOG_OUT, SET_USER, SIGN_IN, SIGN_UP } from '../actionTypes/userActionTypes'
 import { IUser, JWTResponce } from '../types'
+
+const logOut = () => ({
+    type: LOG_OUT,
+})
 
 const userSignIn = (userInfo: IUser, navigate: Function) => ({
     type: SIGN_IN,
@@ -23,6 +27,10 @@ const userSignUp = (userInfo: IUser) => ({
 const setUser = (user: IUser) => ({
     type: SET_USER,
     user,
+})
+
+const getMe = () => ({
+    type: GET_ME,
 })
 
 //login - kipab90625@lubde.com
@@ -78,22 +86,55 @@ function* fetchSignUp(action: any) {
     console.log(response)
 }
 
+function* getToken() {
+    const token = localStorage.getItem('jwtAccess')
+    if (token !== 'undefined') {
+        const response: Response = yield fetch('https://studapi.teachmeskills.by/auth/jwt/verify/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            },
+            body: JSON.stringify({ token }),
+        })
+        if (response.status === 200) {
+            return token
+        } else {
+            const refreshToken = localStorage.getItem('jwtRefresh')
+            const newToken: Response = yield fetch('https://studapi.teachmeskills.by/auth/jwt/refresh/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                },
+                body: JSON.stringify({ refreshToken }),
+            })
+            const data: JWTResponce = yield newToken.json()
+            const { access } = data
+            localStorage.setItem('jwtAccess', access)
+            return access
+        }
+    }
+    return ''
+}
+
 function* fetchUserInfo(){
-    const token: string = localStorage.getItem('jwtAccess') || ''
-    const data: Response = yield fetch('https://studapi.teachmeskills.by/auth/users/me/', {
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            'Authorization': `Bearer ${token}`,
-        },
-    })
-    const user: IUser = yield data.json()
-    yield put(setUser(user))
+    const token: string = yield getToken()
+    if (token) {
+        const data: Response = yield fetch('https://studapi.teachmeskills.by/auth/users/me/', {
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+        const user: IUser = yield data.json()
+        yield put(setUser(user))
+    }
 }
 
 function* watcherUser () {
     yield takeEvery(SIGN_UP, fetchSignUp)
     yield takeEvery(ACTIVATE, fetchActivate)
     yield takeEvery(SIGN_IN, fetchSignIn)
+    yield takeEvery(GET_ME, fetchUserInfo)
 }
 
-export { userSignUp, watcherUser, activate, userSignIn }
+export { logOut, userSignUp, watcherUser, activate, userSignIn, getMe }

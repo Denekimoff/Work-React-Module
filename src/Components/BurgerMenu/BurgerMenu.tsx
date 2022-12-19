@@ -1,16 +1,26 @@
-import { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useContext, useEffect } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { IStore } from '../../redux/types'
 import { ThemeContext } from '../../contexts/contexts'
 import { IconDarkTheme } from '../Icon/IconDarkTheme'
 import { IconLightTheme } from '../Icon/IconLightTheme'
 import './BurgerMenu.scss'
+import { logOut } from '../../redux/actionCreators/userActionCreators'
 
 export const BurgerMenu = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const {theme, toggleTheme} = useContext(ThemeContext)
     const user = useSelector((state: IStore) => state.user.user)
+    const handlerLogOut = () => {
+        dispatch(logOut())
+        localStorage.removeItem('jwtAccess')
+        localStorage.removeItem('jwtRefresh')
+        navigate('/sign_in')
+    }
+
 
     return (
         <div className={`burger-menu burger-menu--${theme}`}>
@@ -40,10 +50,18 @@ export const BurgerMenu = () => {
                 </div>
                 <div className='burger-menu__link'>
                     {
-                        user ? (<div><NavLink to='/sign_in' style={{textDecoration: 'none'}}>Log Out</NavLink></div>) : ''
+                        user ? (<div>
+                            <button onClick={handlerLogOut}>
+                                <NavLink to='/sign_in' style={{textDecoration: 'none'}}>
+                                    Log Out
+                                </NavLink>
+                            </button>
+                        </div>) : ''
                     }
                 </div>
             </div>
         </div>
     )
 }
+
+

@@ -1,4 +1,4 @@
-import { SET_USER, SIGN_UP } from '../actionTypes/userActionTypes'
+import { LOG_OUT, SET_USER, SIGN_UP } from '../actionTypes/userActionTypes'
 import { IUser } from '../types'
 
 const initialState = {
@@ -11,6 +11,13 @@ const initialState = {
 export const userReducer = (state: IUser = initialState, action: any) => {
     switch (action.type) {
 
+    case LOG_OUT: {
+        return ({
+            ...state,
+            user: null,
+        })
+    }
+
     case SIGN_UP: {
         return ({
             ...state,
@@ -21,7 +28,6 @@ export const userReducer = (state: IUser = initialState, action: any) => {
     }
     case SET_USER: {
         const { user } = action
-        console.log(user)
         return ({
             ...state,
             user,

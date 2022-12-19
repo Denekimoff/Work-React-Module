@@ -1,6 +1,10 @@
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
+import React from 'react'
+
+import { useDispatch } from 'react-redux'
+
 import { Header } from './components/Header/Header'
 import { Footer } from './components/Footer/Footer'
 import { THEMES } from './constants'
@@ -17,12 +21,20 @@ import { Post } from './components/pages/Post'
 import { Activate } from './components/Activate/Activate'
 import { AddPost } from './components/pages/AddPost'
 
+import { getMe } from './redux/actionCreators/userActionCreators'
+
 function App () {
+    const dispatch = useDispatch()
     //Состояние темы приложения
     const [theme, setTheme] = useState(THEMES.light)
     const toggleTheme = () => {
         setTheme (theme === 'light' ? THEMES.dark : THEMES.light)
     }
+
+    React.useEffect (() => {
+        dispatch(getMe())
+    },[])
+
 
     //Состояние для показа меню
     const [menu, setMenu] = useState(false)
